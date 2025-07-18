@@ -8,14 +8,7 @@ const {isLoggedIn , isowner, validatelisting} = require("../middleware.js");
 const listingController = require("../controllers/listings.js")
 const multer  = require('multer');
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, path.join(__dirname, '../uploads')); // save to root/abc folder
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + '-' + file.originalname); // unique filename
-//   }
-// });
+
 const{storage} = require("../cloudConfig.js");
 const upload = multer({ storage});
 
@@ -25,13 +18,7 @@ router
 .get(  wrapAsync(listingController.index))
 .post( isLoggedIn ,  upload.single("listing[image]"), validatelisting ,  wrapAsync(listingController.creteListing));
 
-// .post(), (req,res) => {
-//   try {
-//     // console.log("=======================", req.file)
-//   res.send(req.file);
-//   } catch(e) {
-//     console.log('===', e)
-//   }
+
 
 
   

@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
-<!-- <script>
+<script>
   const mapToken = "<%= process.env.MAP_TOKEN%>"
-</script> -->
+</script>
 <div class="row">
   <div class="col-8 offset-3 mt-3">
     <h3><%= listing.title %></h3>
@@ -80,9 +80,13 @@
             <p class="card-text"><%= review.comment %></p>
           </div> 
           <br />
+          <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
+          <div class="btns">
           <form class="mb-3" method="POST" action="/listings/<%= listing._id%>/reviews/<%=review._id%>?_method=DELETE">
             <button class="btn btn-sm btn-dark">Delete</button>
           </form>
+           </div>
+          <% } %>
         </div>
         <% } %>
       </div>
